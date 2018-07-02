@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const db = mongoose.connection;
 
-db.on('once', ()=>{
+db.once('open', ()=>{
     console.log('database is ready to connect...');
 });
 
@@ -15,10 +15,23 @@ db.on('error', () => {
 let Schema = mongoose.Schema;
 
 let taskSchema = new Schema({
-    taskId : Number,
-    category : String,
-    completed : Boolean,
-    task : String
+    taskId : {
+        type : Number,
+        required : true,
+        unique : true
+    },
+    category : {
+        type : String,
+        required : true
+    },
+    completed : {
+        type : String,
+        required : true,
+    },
+    task : {
+        type : String,
+        required : true
+    }
 });
 
 
