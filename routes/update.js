@@ -6,37 +6,22 @@ const Model = require('../models/tasks');
 
 //learn how to use put request in rest api
 
-router.post('/', (req, res, next) => {
+router.put('/', (req, res, next) => {
     console.log(req.body);
-    // update the database as per the data received from the update request
-    let updateObjects = req.body;
-    // convert the tasks in updateObject to an array first
-    let updateArray = [];
-    for(const key of Object.keys(updateObjects)){
-        updateArray.push(updateObjects[key]);
-    }
-    // console.log(updateArray);
-    updateArray.forEach((value) => {
-        console.log('Testing value ',value['taskId']);
+    
+    let taskId = req.body.taskId;
+    let completed = req.body.completed;
 
-    })
-
-    res.status(200).send('PUT request accepted...');
+    Model.update({taskId : taskId}, {$set : {completed : completed}}, {new : true})
+         .exec()
+         .then((result) => {
+            console.log('Tasks complete status updated...');
+            res.status(200).send('Updated successfully...');
+         }).catch((err) => {
+             res.status(500).send('Something went wrong while updating database...');
+            console.log('Something went wrong while updating database...', err);
+         });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
 

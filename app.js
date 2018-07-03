@@ -17,6 +17,7 @@ var usersRouter = require('./routes/users');
 let addRouter = require('./routes/add');
 let refreshRouter = require('./routes/refresh');
 let updateRouter = require('./routes/update');
+let deleteRouter = require('./routes/delete');
 var app = express();
 
 // view engine setup
@@ -38,6 +39,7 @@ app.use('/users', usersRouter);
 app.use('/add', addRouter);
 app.use('/refresh', refreshRouter);
 app.use('/update', updateRouter);
+app.use('/delete', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
