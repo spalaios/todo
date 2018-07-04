@@ -13,11 +13,12 @@ router.delete('/', (req, res, next) =>{
         .exec()
         .then((result) => {
             console.log('Task deleted successfully....');
+            res.status(200).send(taskId);
         }).catch((err) => {
             console.log('Error while delete task from database..');
         });
 
-    res.send('delete req accepted...');
+   
 });
 
 
