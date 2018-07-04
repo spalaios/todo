@@ -26,12 +26,12 @@ router.post('/', function(req, res, next) {
 
     model.save()
         .then((result) => {
-            console.log('result save successfully', result);    
+            // console.log('result save successfully', result); 
+            res.status(200).send(result);   
         }).catch((err) => {
             console.log('error while saving data successfully', err);
+            res.status(500).send('failure');
         });
-
-    res.status(201).send('success');
 });
 
 //learn about CORS in detail...
